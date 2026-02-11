@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-multipart
+jinja2
+sqlalchemy
+redis
+rq
+psycopg2-binary # In case we swap to postgres, but sqlite is default
+requests

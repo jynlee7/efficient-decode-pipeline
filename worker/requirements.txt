@@ -1,0 +1,6 @@
+redis
+rs
+rq
+sqlalchemy
+psycopg2-binary
+requests

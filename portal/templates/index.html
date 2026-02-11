@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Efficient-Decode Competition</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .container { max_width: 800px; margin-top: 50px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="mb-4">Efficient-Decode Competition</h1>
+    
+    <div class="card mb-4">
+        <div class="card-header">Submit Entry</div>
+        <div class="card-body">
+            <form action="/submit" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Submission File (.zip)</label>
+                    <input type="file" name="file" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">Leaderboard</div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Status</th>
+                        <th>Score</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sub in submissions %}
+                    <tr>
+                        <td>{{ sub.id }}</td>
+                        <td>{{ sub.user_id }}</td>
+                        <td>
+                            <span class="badge bg-{{ 'success' if sub.status == 'completed' else 'warning' if sub.status == 'processing' else 'danger' if sub.status == 'failed' else 'secondary' }}">
+                                {{ sub.status }}
+                            </span>
+                        </td>
+                        <td>{{ sub.result_metrics }}</td>
+                        <td>{{ sub.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

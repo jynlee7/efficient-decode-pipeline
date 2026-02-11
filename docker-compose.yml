@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  portal:
+    build:
+      context: .
+      dockerfile: portal/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./portal:/app/portal
+      - ./common:/app/common
+      - ./scheduler:/app/scheduler
+      - ./data:/app/data
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=sqlite:////app/data/competition.db
+    depends_on:
+      - redis
+
+  worker:
+    build:
+      context: .
+      dockerfile: worker/Dockerfile
+    volumes:
+      - ./worker:/app/worker
+      - ./common:/app/common
+      - ./scheduler:/app/scheduler
+      - ./data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock # Access to host docker for spawning siblings
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=sqlite:////app/data/competition.db
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
