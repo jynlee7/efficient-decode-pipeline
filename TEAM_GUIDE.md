@@ -57,7 +57,23 @@ Your goal is to creating a frictionless submission experience.
     *   Stream the build logs from the worker back to the portal so the user can see if `pip install` fails immediately.
 
 4.  **Admin Dashboard**:
-    *   You need a hidden page to:
-        *   Kill stuck jobs.
-        *   Ban abusive users.
         *   View cluster health (GPU utilization).
+
+## 3. Learning Resources
+
+### 📦 For Data Processing & Sandbox
+*   **Docker SDK for Python**: [Documentation](https://docker-py.readthedocs.io/en/stable/) - Learn how to run containers programmatically.
+*   **NVIDIA Container Toolkit**: [User Guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html) - Essential for enabling GPU access in containers.
+*   **GVisor**: [One-minute Quickstart](https://gvisor.dev/docs/) - Learn about sandboxing to prevent container escapes.
+*   **Redis Queue (RQ)**: [Docs](https://python-rq.org/) - Simple job queues for Python.
+*   **Prometheus**: [Getting Started](https://prometheus.io/docs/prometheus/latest/getting_started/) - For scraping metrics.
+
+### 🌐 For API & Portal
+*   **FastAPI**: [Tutorial - User Guide](https://fastapi.tiangolo.com/tutorial/) - The best way to learn modern Python APIs.
+*   **OAuth2 with FastAPI**: [Security Guide](https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/) - How to implement login correctly.
+*   **WebSockets**: [FastAPI WebSockets](https://fastapi.tiangolo.com/advanced/websockets/) - For streaming logs to the frontend.
+*   **PostgreSQL**: [SQLAlchemy with Postgres](https://docs.sqlalchemy.org/en/20/dialects/postgresql.html) - Moving away from SQLite.
+
+### 📚 General Architecture
+*   **The Twelve-Factor App**: [12factor.net](https://12factor.net/) - Best practices for building cloud-native apps.
+*   **System Design Primer**: [GitHub Repo](https://github.com/donnemartin/system-design-primer) - Great for understanding scalability concepts.
